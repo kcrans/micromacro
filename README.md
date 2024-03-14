@@ -1,3 +1,4 @@
+![tiny_keyboard_pic](mm_pic.webp)
 # micromacro
 minimal, simple firmware for macropads
 
