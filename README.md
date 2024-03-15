@@ -13,4 +13,6 @@ minimal, simple firmware for macropads
 * Python 3.8+
 * pynput
 * pySerial
-  
+
+## Misc. Notes
+* On MacOS you will have to give permission to terminal (or whatever you use to run the python script) to "control your computer"  

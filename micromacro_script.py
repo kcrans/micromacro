@@ -10,7 +10,9 @@ keymap = ['7', '8', '9',
 
 get_key = {bytes(i) : key for i, key in enumerate(keymap)}
 
-with serial.Serial('COM6', 9600) as ser:
+port = "/dev/cu.usbmodem101"
+# port = "COM6"
+with serial.Serial(port, 9600) as ser:
     while True:
         if ser.in_waiting > 0:
             key_byte = ser.read(1)
