@@ -1,5 +1,7 @@
+#define UNICODE
 #include <Windows.h>
 #include <iostream>
+#pragma comment(lib, "User32.lib")
 
 WORD keymap[12] = {VK_NUMPAD7, VK_NUMPAD8, VK_NUMPAD9,
           VK_NUMPAD4, VK_NUMPAD5, VK_NUMPAD6,
@@ -7,7 +9,7 @@ WORD keymap[12] = {VK_NUMPAD7, VK_NUMPAD8, VK_NUMPAD9,
           VK_NUMPAD0, VK_OEM_PERIOD, VK_RETURN};
 
 // Setup serial connection
-HANDLE setup_serial(LPCSTR port_name, DWORD baudrate) {
+HANDLE setup_serial(LPCTSTR port_name, DWORD baudrate) {
     HANDLE serial_handle = CreateFile(port_name, GENERIC_READ, 0, 0, OPEN_EXISTING, 0, 0);
     if (serial_handle == INVALID_HANDLE_VALUE) {
         std::cerr << "Error opening serial port: invlaid handle value" << std::endl;
@@ -35,6 +37,8 @@ HANDLE setup_serial(LPCSTR port_name, DWORD baudrate) {
     }
 
     // Connection established, return pointer to serial connection
+    // But first we need to clear the buffer:
+    PurgeComm(serial_handle, PURGE_RXCLEAR);
     return serial_handle;
 }
 
@@ -69,7 +73,7 @@ void key_event(char key_code) {
 }
 
 int main(void) {
-    LPCSTR port_name = "COM6";
+    LPCTSTR port_name = L"COM6";
     DWORD baudrate = CBR_9600;
     HANDLE serial_handle = setup_serial(port_name, baudrate);
 
@@ -81,8 +85,8 @@ int main(void) {
 
     while (true) {
         if (read_serial(serial_handle, buffer, 1)) {
-            key_event(buffer[0]);
-            //std::cout << static_cast<int>(buffer[0]) << std::endl;
+            //key_event(buffer[0]);
+            std::cout << static_cast<int>(buffer[0]) << std::endl;
         }
     }
 
