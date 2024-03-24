@@ -4,7 +4,7 @@ minimal, simple firmware for macropads
 
 ## Features:
 * n-key rollover
-* debouncing
+* [debouncing](https://my.eng.utah.edu/~cs5780/debouncing.pdf)
 * arbitrary hotkeys and macros
 * up to 256 keys
 * fast
