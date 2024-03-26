@@ -1,4 +1,5 @@
 #define UNICODE
+#define _UNICODE
 #include "..\mm_esp32_firmware\common.h"
 #include <Windows.h>
 #include <iostream>
@@ -12,7 +13,7 @@ WORD keymap[NUM_COLS * NUM_ROWS] = {
     };
 
 // Setup serial connection
-HANDLE setup_serial(LPCTSTR port_name, DWORD baudrate) {
+HANDLE setup_serial(LPCWSTR port_name, DWORD baudrate) {
     HANDLE serial_handle = CreateFile(port_name, GENERIC_READ, 0, 0, OPEN_EXISTING, 0, 0);
     if (serial_handle == INVALID_HANDLE_VALUE) {
         std::cerr << "Error opening serial port: invlaid handle value" << std::endl;
@@ -85,19 +86,23 @@ void key_event(char key_code) {
     INPUT input = {0};
     input.type = INPUT_KEYBOARD;
     input.ki.wVk = keypress;
+    INPUT inputs[] = {input}; 
 
-    SendInput(1, &input, sizeof(INPUT));
+    SendInput(1, inputs, sizeof(INPUT));
     input.ki.dwFlags = KEYEVENTF_KEYUP;
-    SendInput(1, &input, sizeof(INPUT));
+    UINT events_sent = SendInput(1, inputs, sizeof(INPUT));
+    if (events_sent == 0) {
+        std::cerr << "Error: Keypress not registered" << std::endl;
+    }
 }
 
-int main(int argc, char *argv[]) {
-    if (argc == 1) {
-        LPCSTR port_name = argv[1];
+int wmain(int argc, LPWSTR argv[]) {
+    
+    LPWSTR port_name = L"COM6"; // Default name for serial port
+    if (argc == 2) { // Else use the command line arg for the port's name
+        port_name = argv[1];
     }
-    else {
-        LPCTSTR port_name = L"COM6";
-    }
+
     DWORD baudrate = BAUDRATE;
     HANDLE serial_handle = setup_serial(port_name, baudrate);
 
