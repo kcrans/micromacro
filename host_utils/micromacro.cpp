@@ -91,8 +91,13 @@ void key_event(char key_code) {
     SendInput(1, &input, sizeof(INPUT));
 }
 
-int main(void) {
-    LPCTSTR port_name = L"COM6";
+int main(int argc, char *argv[]) {
+    if (argc == 1) {
+        LPCSTR port_name = argv[1];
+    }
+    else {
+        LPCTSTR port_name = L"COM6";
+    }
     DWORD baudrate = BAUDRATE;
     HANDLE serial_handle = setup_serial(port_name, baudrate);
 
