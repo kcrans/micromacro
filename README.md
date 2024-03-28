@@ -10,13 +10,16 @@ minimal, simple firmware for macropads
 * fast
 
 ## Desktop Client Requirements (building from source):
+
 ### Python Client:
 * Python 3.8+
 * pynput
 * pySerial
+
 ### C++ Windows Client:
-* A C++ compiler
-* I've tested and built it with the Microsoft C++ toolset and vscode
+* I've tested and built this app with the Microsoft C++ toolset (so the MSVC compiler) and vscode.
+* Look [here](https://code.visualstudio.com/docs/cpp/config-msvc) for a tutorial on getting Microsoft Visual C++ setup in vscode.
+* Then all you need to do is open a Developer Command Prompt for Visual Studio, go to the root folder for this repo and run code .\host_utils\windows.
 
 ## Firmware Requirements (building from source):
 * Arduino IDE with Espressif's ESP32 package installed
