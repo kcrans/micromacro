@@ -1,4 +1,4 @@
-#include "common.h"
+#include "config.h"
 #define CHECK_INTERVAL   1   // Delay inbetween reading gpio values
 #define PRESS_INTERVAL   2  // Minimum time before a press is registered
 #define RELEASE_INTERVAL 20 // Minimum time before a press can be released

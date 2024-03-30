@@ -1,6 +1,6 @@
 #define UNICODE
 #define _UNICODE
-#include "..\..\..\mm_esp32_firmware\common.h"
+#include "..\..\..\mm_esp32_firmware\config.h"
 #include <Windows.h>
 #include <iostream>
 #pragma comment(lib, "User32.lib")
