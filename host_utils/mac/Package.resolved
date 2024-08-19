@@ -1,5 +1,5 @@
 {
-  "originHash" : "b86ff286eaf376bee062394e76ba65b38cf4e3e84fe8b9f9d7ba3dd333bf91b0",
+  "originHash" : "69596646ad7ed4025f503c2ce526ae51e62755d5d4668e1044e26f492059e65a",
   "pins" : [
     {
       "identity" : "example-package-figlet",
@@ -8,6 +8,15 @@
       "state" : {
         "branch" : "main",
         "revision" : "166eef46de0b094d6d1966e749f727d6c4beba0e"
+      }
+    },
+    {
+      "identity" : "orsserialport",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/armadsen/ORSSerialPort.git",
+      "state" : {
+        "revision" : "58a8cc454304e22280f184c2d2e25ecb3d5a74c5",
+        "version" : "2.1.0"
       }
     },
     {
